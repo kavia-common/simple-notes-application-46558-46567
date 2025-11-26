@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ocean Notes (Simple Notes App)
 
-## Getting Started
+A modern, responsive notes app built with Next.js App Router. Features a clean Ocean Professional theme with blue (#2563EB) and amber (#F59E0B) accents, subtle gradients, and smooth transitions.
 
-First, run the development server:
+## Features
+- Two-pane layout: sidebar list and main editor with header
+- CRUD: create, read, update, delete notes
+- Autosave on typing with explicit Save button
+- Local state with persistence to localStorage
+- Keyboard accessible list selection and buttons
+- Optional remote API scaffold (env based) without breaking local behavior
+- TypeScript, lightweight components, test-friendly `data-testid` hooks
 
+## Run locally
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment variables (optional)
+- NEXT_PUBLIC_API_BASE or NEXT_PUBLIC_BACKEND_URL (optional): if provided and your backend implements:
+  - GET /notes
+  - POST /notes
+  - PUT /notes/:id
+  - DELETE /notes/:id
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The UI defaults to local state and localStorage even if these are not set.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structure
+- src/app/page.tsx – main UI and state management
+- src/components/Header.tsx – app header
+- src/components/NotesList.tsx – sidebar with search and actions
+- src/components/NoteEditor.tsx – title + content editor
+- src/lib/types.ts – shared types
+- src/lib/storage.ts – localStorage helpers and utilities
+- src/lib/api.ts – optional API client scaffold
 
-## Learn More
+## Accessibility
+- Landmarks (banner, region), aria labels and roles
+- Keyboard selection with Enter/Space on note items
+- Color contrast mindful of theme
 
-To learn more about Next.js, take a look at the following resources:
+## Notes
+- This project uses Tailwind v4 via `@tailwindcss/postcss` (already configured).
+- Build: `npm run build`, Start: `npm start`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
